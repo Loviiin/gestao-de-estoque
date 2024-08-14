@@ -1,43 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Cadastro de Usuário</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/css/util.css">
-    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Usuário</title>
 </head>
 <body>
-    <div class="limiter">
-        <div class="container-login100">
-            <div class="wrap-login100">
-                <div class="login100-form-title" style="background-image: url('/images/bg-01.jpg');">
-                    <span class="login100-form-title-1">
-                        Cadastro
-                    </span>
-                </div>
+    <h1>Cadastro de Usuário</h1>
+    <form action="/register" method="POST">
+        <label for="username">Usuário:</label>
+        <input type="text" id="username" name="username" required><br>
 
-                <form class="login100-form validate-form" action="/register" method="POST">
-                    <div class="wrap-input100 validate-input m-b-26">
-                        <span class="label-input100">Username</span>
-                        <input class="input100" type="text" name="username" placeholder="Enter username">
-                        <span class="focus-input100"></span>
-                    </div>
+        <label for="password">Senha:</label>
+        <input type="password" id="password" name="password" required><br>
 
-                    <div class="wrap-input100 validate-input m-b-18">
-                        <span class="label-input100">Password</span>
-                        <input class="input100" type="password" name="password" placeholder="Enter password">
-                        <span class="focus-input100"></span>
-                    </div>
+        <label for="userType">Tipo de Usuário:</label>
+        <select id="userType" name="userType">
+            <option value="employee">Funcionário</option>
+            <option value="manager">Gerente</option>
+        </select><br>
 
-                    <div class="container-login100-form-btn">
-                        <button class="login100-form-btn" type="submit">
-                            Cadastrar
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+        <button type="submit">Cadastrar</button>
+    </form>
+    <p><a href="/login">Já tem uma conta? Faça login aqui.</a></p>
 </body>
 </html>

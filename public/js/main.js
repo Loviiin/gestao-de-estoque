@@ -39,41 +39,4 @@ document.addEventListener('DOMContentLoaded', (event) => {
             console.error('Erro:', error);
         }
     });
-    document.addEventListener('DOMContentLoaded', () => {
-        const form = document.querySelector('.login100-form');
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-    
-            const username = document.querySelector('input[name="username"]').value;
-            const password = document.querySelector('input[name="pass"]').value;
-    
-            if (!username || !password) {
-                alert('Usuário e senha são obrigatórios.');
-                return;
-            }
-    
-            // Simula envio para o servidor
-            fetch('/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ username, password })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    if (data.userType === 'manager') {
-                        window.location.href = '/manager';
-                    } else {
-                        window.location.href = '/employee';
-                    }
-                } else {
-                    alert(data.message);
-                }
-            })
-            .catch(error => console.error('Erro:', error));
-        });
-    });
-    
 });
