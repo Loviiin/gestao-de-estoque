@@ -1,42 +1,36 @@
-document.addEventListener('DOMContentLoaded', (event) => {
-    console.log('Página carregada e pronta para uso.');
-
-    // Seleciona o formulário de login
-    const form = document.getElementById('loginForm');
+document.addEventListener('DOMContentLoaded', () => {
+    const loginForm = document.getElementById('loginForm');
     
-    // Adiciona um ouvinte de evento para o envio do formulário
-    form.addEventListener('submit', async (event) => {
-        event.preventDefault(); // Previne o envio padrão do formulário
+    if (loginForm) {
+        loginForm.addEventListener('submit', async (event) => {
+            event.preventDefault(); // Impede o comportamento padrão do formulário
 
-        // Obtém os dados do formulário
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData.entries());
+            const username = document.querySelector('input[name="username"]').value;
+            const password = document.querySelector('input[name="password"]').value;
 
-        try {
-            const response = await fetch('/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            });
+            try {
+                const response = await fetch('/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
 
-            const result = await response.json();
+                const result = await response.json(); // Obtém a resposta JSON
 
-            if (result.success) {
-                // Redireciona com base no tipo de usuário
-                if (result.userType === 'admin') {
-                    window.location.href = '/manager';
-                } else if (result.userType === 'employee') {
-                    window.location.href = '/employee';
+                if (result.success) {
+                    // Redireciona com base no tipo de usuário
+                    if (result.userType === 'manager') {
+                        window.location.href = '/manager';
+                    } else if (result.userType === 'employee') {
+                        window.location.href = '/employee';
+                    }
+                } else {
+                    alert(result.message); // Mostra a mensagem de erro
                 }
-            } else {
-                // Exibe a mensagem de erro
-                const messageContainer = document.querySelector('.message-container');
-                messageContainer.innerHTML = `<div class="message alert alert-danger mt-3">${result.message}</div>`;
+            } catch (error) {
+                console.error('Erro ao fazer login:', error);
+                alert('Erro ao processar o login.');
             }
-        } catch (error) {
-            console.error('Erro:', error);
-        }
-    });
+        });
+    }
 });
