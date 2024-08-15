@@ -7,8 +7,8 @@ $(document).ready(function() {
         $.ajax({
             type: 'POST',
             url: '/forgot-password',
-            contentType: 'application/json', // Especifica que o tipo de conteúdo é JSON
-            data: JSON.stringify({ username }), // Converte os dados para JSON
+            contentType: 'application/json',
+            data: JSON.stringify({ username }),
             success: function(response) {
                 $('#message').text(response.message).addClass('alert alert-success');
             },
