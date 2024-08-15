@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesquisar Prato</title>
+    <link rel="stylesheet" href="css/tudo.css">
+    <style>
+        /* Seus estilos aqui */
+    </style>
+</head>
+<body>
+    <div class="search-container">
+        <h1>Pesquisar Prato</h1>
+        <form id="searchForm">
+            <label for="searchTerm">Nome do Prato:</label>
+            <input type="text" id="searchTerm" name="searchTerm" required>
+            <button type="submit">Pesquisar</button>
+        </form>
+        <div id="results" class="results"></div>
+        <a href="manager.html" class="btn-primary">Voltar para o Gerente</a>
+    </div>
+
+    <script>
+        document.getElementById('searchForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const searchTerm = document.getElementById('searchTerm').value.trim();
+
+            if (!searchTerm) {
+                alert('Por favor, insira um nome de prato para pesquisa.');
+                return;
+            }
+
+            try {
+                const response = await fetch(`/search_dish?name=${encodeURIComponent(searchTerm)}`);
+                const dishes = await response.json();
+
+                const resultsContainer = document.getElementById('results');
+                resultsContainer.innerHTML = '';
+
+                if (dishes.length === 0) {
+                    resultsContainer.innerHTML = '<p>Nenhum prato encontrado.</p>';
+                } else {
+                    dishes.forEach(dish => {
+                        const dishElement = document.createElement('div');
+                        dishElement.className = 'dish-item';
+                        dishElement.innerHTML = `
+                            <h2>${dish.name}</h2>
+                            <button onclick="window.location.href='update_dish.html?id=${encodeURIComponent(dish.name)}'">Atualizar</button>
+                            <button onclick="window.location.href='delete_dish.html?id=${encodeURIComponent(dish.name)}'">Excluir</button>
+                        `;
+                        resultsContainer.appendChild(dishElement);
+                    });
+                }
+            } catch (error) {
+                console.error('Erro ao buscar pratos:', error);
+                alert('Erro ao buscar pratos. Por favor, tente novamente.');
+            }
+        });
+    </script>
+</body>
+</html>

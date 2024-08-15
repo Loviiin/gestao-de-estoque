@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excluir Prato</title>
+    <link rel="stylesheet" href="css/tudo.css">
+    <style>
+        .delete-form {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #333;
+            border-radius: 8px;
+            color: #fff;
+        }
+        h1 {
+            text-align: center;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #fff;
+        }
+        input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            background: rgba(0,0,0,0.3);
+            color: #fff;
+        }
+        button {
+            background-color: #4a77d4;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #6eb6de;
+        }
+    </style>
+</head>
+<body>
+    <div class="delete-form">
+        <h1>Excluir Prato</h1>
+        <form id="deleteForm" action="/delete_dish" method="post">
+            <label for="dishName">Nome do Prato:</label>
+            <input type="text" id="dishName" name="dishName" required>
+            <button type="submit">Excluir Prato</button>
+        </form>
+        <a href="manager" class="btn-primary">Voltar para o Gerente</a>
+    </div>
+</body>
+</html>

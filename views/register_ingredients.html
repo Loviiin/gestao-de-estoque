@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Ingredientes</title>
+    <link rel="stylesheet" href="css/tudo.css">
+    <style>
+        .login {
+            width: 90%;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .login h1 {
+            color: #fff;
+        }
+        .login button {
+            margin-bottom: 15px; /* Adiciona uma margem entre os botões */
+        }
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #fff;
+        }
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.2);
+            font-size: 13px;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="login">
+        <h1>Registrar Ingredientes</h1>
+        <form action="/register_ingredients" method="post">
+            <div class="input-group">
+                <label for="name">Nome do Insumo:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="input-group">
+                <label for="quantity">Quantidade:</label>
+                <input type="number" id="quantity" name="quantity" step="0.01" required>
+            </div>
+            <div class="input-group">
+                <label for="unit">Unidade:</label>
+                <select id="unit" name="unit" required>
+                    <option value="kg">Kg</option>
+                    <option value="l">L</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block btn-large">Registrar Ingrediente</button>
+            <button type="button" class="btn btn-primary btn-block btn-large" onclick="window.location.href='manager'">Voltar</button>
+        </form>
+    </div>
+</body>
+</html>

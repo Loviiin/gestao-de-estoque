@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Prato</title>
+    <link rel="stylesheet" href="css/tudo.css">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #092756;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        .register-dish {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #333;
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #fff;
+        }
+        input[type="text"], input[type="number"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            background: rgba(0,0,0,0.3);
+            color: #fff;
+        }
+        button {
+            background-color: #4a77d4;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #6eb6de;
+        }
+        .remove-ingredient {
+            background-color: #dc3545;
+        }
+        .remove-ingredient:hover {
+            background-color: #c82333;
+        }
+        #addIngredient {
+            background-color: #28a745;
+        }
+        #addIngredient:hover {
+            background-color: #218838;
+        }
+        .ingredient {
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #444;
+            border-radius: 4px;
+        }
+        .btn-primary {
+            display: inline-block;
+            background-color: #4a77d4;
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            text-align: center;
+            margin-top: 20px;
+            margin-right: 0;
+        }
+        .btn-primary:hover {
+            background-color: #6eb6de;
+        }
+    </style>
+</head>
+<body>
+    <div class="register-dish">
+        <h1>Cadastrar Prato</h1>
+        <form id="dishForm" action="/register_dish" method="post">
+            <label for="dishName">Nome do Prato:</label>
+            <input type="text" id="dishName" name="dishName" required>
+            
+            <div id="ingredientsContainer">
+                <div class="ingredient">
+                    <label for="ingredientName0">Ingrediente:</label>
+                    <input type="text" id="ingredientName0" name="ingredients[0][name]" required>
+                    
+                    <label for="ingredientWeight0">Peso:</label>
+                    <input type="number" id="ingredientWeight0" name="ingredients[0][weight]" step="0.01" required>
+                    
+                    <button type="button" class="remove-ingredient">Remover</button>
+                </div>
+            </div>
+            
+            <button type="button" id="addIngredient">Adicionar Ingrediente</button>
+            <button type="submit">Cadastrar Prato</button>
+        </form>
+        <a href="manager" class="btn-primary">Voltar para o Gerente</a>
+    </div>
+
+    <script>
+        let ingredientIndex = 1;
+
+        document.getElementById('addIngredient').addEventListener('click', () => {
+            const container = document.getElementById('ingredientsContainer');
+            const newIngredient = document.createElement('div');
+            newIngredient.className = 'ingredient';
+            newIngredient.innerHTML = `
+                <label for="ingredientName${ingredientIndex}">Ingrediente:</label>
+                <input type="text" id="ingredientName${ingredientIndex}" name="ingredients[${ingredientIndex}][name]" required>
+                
+                <label for="ingredientWeight${ingredientIndex}">Peso:</label>
+                <input type="number" id="ingredientWeight${ingredientIndex}" name="ingredients[${ingredientIndex}][weight]" step="0.01" required>
+                
+                <button type="button" class="remove-ingredient">Remover</button>
+            `;
+            container.appendChild(newIngredient);
+            ingredientIndex++;
+        });
+
+        document.getElementById('ingredientsContainer').addEventListener('click', (e) => {
+            if (e.target.classList.contains('remove-ingredient')) {
+                e.target.parentElement.remove();
+            }
+        });
+    </script>
+</body>
+</html>

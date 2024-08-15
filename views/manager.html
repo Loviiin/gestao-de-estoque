@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel do Gerente</title>
+    <link rel="stylesheet" href="css/tudo.css">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #092756;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        .login {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #333;
+            border-radius: 8px;
+            text-align: center;
+        }
+        h1 {
+            color: #fff;
+            text-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+        button {
+            background-color: #4a77d4;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #6eb6de;
+        }
+        .btn-primary {
+            display: inline-block;
+            background-color: #4a77d4;
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            text-align: center;
+            margin-top: 10px;
+        }
+        .btn-primary:hover {
+            background-color: #6eb6de;
+        }
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+        .btn-large {
+            padding: 15px;
+            font-size: 1.2em;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login">
+        <h1>Painel do Gerente</h1>
+        
+        <div class="section">
+            <button class="btn btn-primary btn-block btn-large" onclick="window.location.href='register_dish.html'">Cadastrar Prato</button>
+            <button class="btn btn-primary btn-block btn-large" onclick="window.location.href='register_ingredients.html'">Registrar Ingredientes</button>
+        </div>
+
+        <div class="section">
+            <button class="btn btn-primary btn-block btn-large" onclick="window.location.href='search_dish'">Pesquisar Prato</button>
+            <button class="btn btn-primary btn-block btn-large" onclick="window.location.href='search_ingredient'">Pesquisar Ingrediente</button>
+        </div>
+
+        <div class="section">
+            <button class="btn btn-primary btn-block btn-large" onclick="window.location.href='update_dish.html'">Atualizar Prato</button>
+            <button class="btn btn-primary btn-block btn-large" onclick="window.location.href='update_ingredient.html'">Atualizar Ingrediente</button>
+        </div>
+
+        <div class="section">
+            <button class="btn btn-primary btn-block btn-large" onclick="window.location.href='delete_dish.html'">Excluir Prato</button>
+            <button class="btn btn-primary btn-block btn-large" onclick="window.location.href='delete_ingredient.html'">Excluir Ingrediente</button>
+        </div>
+
+        <div class="section">
+            <button class="btn btn-primary btn-block btn-large" onclick="window.location.href='index.html'">Voltar ao Login</button>
+        </div>
+    </div>
+</body>
+</html>

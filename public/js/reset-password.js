@@ -2,8 +2,11 @@ $(document).ready(function() {
     $('#resetPasswordForm').on('submit', function(event) {
         event.preventDefault();
         
-        const token = $('input[name="token"]').val(); // Agora puxa o token do formulário corretamente
+        const token = new URLSearchParams(window.location.search).get('token');
         const newPassword = $('#newPassword').val();
+
+        console.log('Sending token:', token); 
+        console.log('Sending newPassword:', newPassword);
 
         $.ajax({
             type: 'POST',
