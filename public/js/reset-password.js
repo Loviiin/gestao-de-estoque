@@ -5,9 +5,6 @@ $(document).ready(function() {
         const token = new URLSearchParams(window.location.search).get('token');
         const newPassword = $('#newPassword').val();
 
-        console.log('Sending token:', token); 
-        console.log('Sending newPassword:', newPassword);
-
         $.ajax({
             type: 'POST',
             url: '/reset-password',

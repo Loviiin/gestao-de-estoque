@@ -5,8 +5,11 @@ document.addEventListener('DOMContentLoaded', () => {
         loginForm.addEventListener('submit', async (event) => {
             event.preventDefault(); // Impede o comportamento padrão do formulário
 
-            const username = document.querySelector('input[name="username"]').value;
+            let username = document.querySelector('input[name="username"]').value;
             const password = document.querySelector('input[name="password"]').value;
+
+            // Remova o hífen do nome de usuário
+            username = username.replace(/-/g, '');
 
             try {
                 const response = await fetch('/login', {
@@ -19,8 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (result.success) {
                     // Redireciona com base no tipo de usuário
-                    if (result.userType === 'manager') {
-                        window.location.href = '/manager';
+                    if (result.userType === 'manager' || result.userType === 'owner') {
+                        window.location.href = '/management';
                     } else if (result.userType === 'employee') {
                         window.location.href = '/employee';
                     }

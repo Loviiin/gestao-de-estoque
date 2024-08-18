@@ -1,14 +1,13 @@
 $(document).ready(function() {
     $('#forgotPasswordForm').on('submit', function(event) {
         event.preventDefault();
-        
+
         const username = $('#username').val();
-        
+
         $.ajax({
             type: 'POST',
             url: '/forgot-password',
-            contentType: 'application/json',
-            data: JSON.stringify({ username }),
+            data: { username },
             success: function(response) {
                 $('#message').text(response.message).addClass('alert alert-success');
             },
